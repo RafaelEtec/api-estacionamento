@@ -1,6 +1,7 @@
 package com.goulart.api_estacionamento.business.services;
 
-import com.goulart.api_estacionamento.controller.dto.CarRequestDTO;
+import com.goulart.api_estacionamento.controller.dto.Car;
+import com.goulart.api_estacionamento.controller.dto.CarDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -16,15 +17,14 @@ import java.sql.SQLException;
 @Slf4j
 public class CarService {
 
-    String url = "";
-
     private static final Logger log = LoggerFactory.getLogger(CarService.class);
 
-    public void addCar(CarRequestDTO car) {
-        String sql = "INSERT INTO ";
+    public void addCar(Car car) {
+        String sql = "INSERT INTO tb_CAR () ";
 
         try {
             Connection con = createConnection();
+
 
         } catch (Exception ex) {
 
@@ -32,7 +32,7 @@ public class CarService {
     }
 
     public static Connection createConnection() throws SQLException {
-        String url = "jdbc:h2:~/test";
+        String url = "jdbc:h2:mem:testdb";
         String user = "sa";
         String password = "sa";
 

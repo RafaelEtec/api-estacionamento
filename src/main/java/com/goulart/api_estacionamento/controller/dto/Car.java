@@ -1,31 +1,41 @@
 package com.goulart.api_estacionamento.controller.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.OffsetDateTime;
+import java.util.Objects;
 
 @Entity
-public class CarRequestDTO {
+@Table(name = "tb_CAR")
+public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String brand;
     private String model;
     private String plateNumber;
+    private String parkingSpace;
     private OffsetDateTime dateHourArrival;
     private OffsetDateTime dateHourEstimatedLeave;
 
-    public CarRequestDTO() {}
+    public Car() {}
 
-    public CarRequestDTO(String brand, String model, String plateNumber, OffsetDateTime dateHourArrival, OffsetDateTime dateHourEstimatedLeave) {
+    public Car(Long id, String brand, String model, String plateNumber, String parkingSpace, OffsetDateTime dateHourArrival, OffsetDateTime dateHourEstimatedLeave) {
+        this.id = id;
         this.brand = brand;
         this.model = model;
         this.plateNumber = plateNumber;
+        this.parkingSpace = parkingSpace;
         this.dateHourArrival = dateHourArrival;
         this.dateHourEstimatedLeave = dateHourEstimatedLeave;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getBrand() {
@@ -52,6 +62,14 @@ public class CarRequestDTO {
         this.plateNumber = plateNumber;
     }
 
+    public String getParkingSpace() {
+        return parkingSpace;
+    }
+
+    public void setParkingSpace(String parkingSpace) {
+        this.parkingSpace = parkingSpace;
+    }
+
     public OffsetDateTime getDateHourArrival() {
         return dateHourArrival;
     }
@@ -66,5 +84,10 @@ public class CarRequestDTO {
 
     public void setDateHourEstimatedLeave(OffsetDateTime dateHourEstimatedLeave) {
         this.dateHourEstimatedLeave = dateHourEstimatedLeave;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
